@@ -3,7 +3,7 @@
 # Quick start
 
 ```shell
-go get github.com/songzhibin97/openai-gosdk
+go get github.com/golang-infrastructure/openai-gosdk
 ```
 
 ```go
@@ -13,7 +13,7 @@ import (
 	"encoding/json"
 	"fmt"
 	
-	openai_gosdk "github.com/songzhibin97/openai-gosdk"
+	openai_gosdk "github.com/golang-infrastructure/openai-gosdk"
 )
 
 func main() {

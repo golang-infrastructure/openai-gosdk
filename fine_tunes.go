@@ -37,19 +37,19 @@ type RequestCreateFineTune struct {
 	// TThe batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass.
 	//
 	// By default, the batch size will be dynamically configured to be ~0.2% of the number of examples in the training set, capped at 256 - in general, we've found that larger batch sizes tend to work better for larger datasets.
-	BatchSize int `json:"batch_size,omitempty"`
+	BatchSize float64 `json:"batch_size,omitempty"`
 
 	// number Optional Defaults to null
 	// The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pretraining multiplied by this value.
 	//
 	// By default, the learning rate multiplier is the 0.05, 0.1, or 0.2 depending on final batch_size (larger learning rates tend to perform better with larger batch sizes). We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results.
-	LearningRateMultiplier int `json:"learning_rate_multiplier,omitempty"`
+	LearningRateMultiplier float64 `json:"learning_rate_multiplier,omitempty"`
 
 	// number Optional Defaults to 0.01
 	// The weight to use for loss on the prompt tokens. This controls how much the model tries to learn to generate the prompt (as compared to the completion which always has a weight of 1.0), and can add a stabilizing effect to training when completions are short.
 	//
 	// If prompts are extremely long (relative to completions), it may make sense to reduce this weight so as to avoid over-prioritizing learning the prompt.
-	PromptLossWeight int `json:"prompt_loss_weight,omitempty"`
+	PromptLossWeight float64 `json:"prompt_loss_weight,omitempty"`
 
 	// boolean Optional Defaults to false
 	// If set, we calculate classification-specific metrics such as accuracy and F-1 score using the validation set at the end of every epoch. These metrics can be viewed in the results file.

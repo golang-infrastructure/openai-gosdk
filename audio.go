@@ -21,7 +21,7 @@ type RequestTranscription struct {
 
 	// number Optional Defaults to 0
 	// The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use log probability to automatically increase the temperature until certain thresholds are hit.
-	Temperature int `json:"temperature,omitempty"`
+	Temperature float64 `json:"temperature,omitempty"`
 
 	// string Optional
 	// The language of the input audio. Supplying the input language in ISO-639-1 format will improve accuracy and latency.
@@ -61,7 +61,7 @@ type RequestTranslation struct {
 
 	// number Optional Defaults to 0
 	// The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use log probability to automatically increase the temperature until certain thresholds are hit.
-	Temperature int `json:"temperature,omitempty"`
+	Temperature float64 `json:"temperature,omitempty"`
 }
 
 type ResponseTranslation struct {

@@ -19,9 +19,14 @@ var (
 	ErrorUnsupportedMethod = errors.New("unsupported method")
 )
 
+type config struct {
+	proxy string
+}
+
 type BaseOpenAI struct {
 	APIKey       string `json:"api_key"`
 	Organization string `json:"organization"`
+	config
 }
 
 type OpenAI[Request, Response any] struct {
@@ -44,8 +49,13 @@ func (o OpenAI[Request, Response]) DoRequest(request Request) (Response, error) 
 		return zeroResponse, err
 	}
 
-	query := resty.
-		New().
+	cli := resty.
+		New()
+	if o.proxy != "" {
+		cli.SetProxy(o.proxy)
+	}
+
+	query := cli.
 		R().
 		SetHeader("Authorization", "Bearer "+o.APIKey).
 		SetHeader("OpenAI-Organization", o.Organization).
@@ -83,9 +93,21 @@ func (o OpenAI[Request, Response]) DoRequest(request Request) (Response, error) 
 	return zeroResponse, nil
 }
 
-func NewBaseOpenAI(apiKey, organization string) BaseOpenAI {
-	return BaseOpenAI{
+type Option func(*config)
+
+func NewBaseOpenAI(apiKey, organization string, options ...Option) BaseOpenAI {
+	base := BaseOpenAI{
 		APIKey:       apiKey,
 		Organization: organization,
+	}
+	for _, option := range options {
+		option(&base.config)
+	}
+	return base
+}
+
+func SetProxy(url string) Option {
+	return func(c *config) {
+		c.proxy = url
 	}
 }
