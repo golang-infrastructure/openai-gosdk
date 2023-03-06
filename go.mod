@@ -1,4 +1,4 @@
-module github.com/songzhibin97/openai-gosdk
+module github.com/golang-infrastructure/openai-gosdk
 
 go 1.19
 
