@@ -9,6 +9,25 @@ func (m ModelName) ModelName() *string {
 }
 
 /*
+GPT-4 Limited beta
+GPT-4 is a large multimodal model (accepting text inputs and emitting text outputs today, with image inputs coming in the future) that can solve difficult problems with greater accuracy than any of our previous models, thanks to its broader general knowledge and advanced reasoning capabilities. Like gpt-3.5-turbo, GPT-4 is optimized for chat but works well for traditional completions tasks.
+LATEST MODEL	DESCRIPTION	MAX TOKENS	TRAINING DATA
+gpt-4	More capable than any GPT-3.5 model, able to do more complex tasks, and optimized for chat. Will be updated with our latest model iteration.	8,192 tokens	Up to Sep 2021
+gpt-4-0314	Snapshot of gpt-4 from March 14th 2023. Unlike gpt-4, this model will not receive updates, and will only be supported for a three month period ending on June 14th 2023.	8,192 tokens	Up to Sep 2021
+gpt-4-32k	Same capabilities as the base gpt-4 mode but with 4x the context length. Will be updated with our latest model iteration.	32,768 tokens	Up to Sep 2021
+gpt-4-32k-0314	Snapshot of gpt-4-32 from March 14th 2023. Unlike gpt-4-32k, this model will not receive updates, and will only be supported for a three month period ending on June 14th 2023.	32,768 tokens	Up to Sep 2021
+For many basic tasks, the difference between GPT-4 and GPT-3.5 models is not significant. However, in more complex reasoning situations, GPT-4 is much more capable than any of our previous models.
+
+*/
+
+var (
+	Gpt4          = ModelName{Name: "gpt-4"}
+	Gpt4_0314     = ModelName{Name: "gpt-4-0314"}
+	Gpt4_32k      = ModelName{Name: "gpt-4-32k"}
+	Gpt4_32k_0314 = ModelName{Name: "gpt-4-32k-0314"}
+)
+
+/*
 GPT-3.5
 GPT-3.5 models can understand and generate natural language or code. Our most capable and cost effective model is gpt-3.5-turbo which is optimized for chat but works well for traditional completions tasks as well.
 

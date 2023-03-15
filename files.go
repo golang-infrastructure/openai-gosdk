@@ -5,6 +5,15 @@ import "fmt"
 const filesURL = "https://api.openai.com/v1/files"
 
 type RequestFiles struct {
+	// Name of the JSON Lines file to be uploaded.
+	//
+	// If the is set to "fine-tune", each line is a JSON record with "prompt" and "completion" fields representing your training examples.purpose
+	File *string `json:"file"`
+
+	// The intended purpose of the uploaded documents.
+	//
+	// Use "fine-tune" for Fine-tuning. This allows us to validate the format of the uploaded file.
+	Purpose *string `json:"purpose"`
 }
 
 type ResponseFiles struct {

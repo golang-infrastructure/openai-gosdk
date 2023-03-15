@@ -15,23 +15,17 @@ type RequestEmbeddings struct {
 	// A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. Learn more. https://platform.openai.com/docs/guides/safety-best-practices https://platform.openai.com/docs/api-reference/models/list
 	User string `json:"user,omitempty"`
 }
-
 type ResponseEmbeddings struct {
-	Id      string `json:"id"`
-	Object  string `json:"object"`
-	Created int    `json:"created"`
-	Choices []struct {
-		Index   int `json:"index"`
-		Message struct {
-			Role    string `json:"role"`
-			Content string `json:"content"`
-		} `json:"message"`
-		FinishReason string `json:"finish_reason"`
-	} `json:"choices"`
+	Object string `json:"object"`
+	Data   []struct {
+		Object    string        `json:"object"`
+		Embedding []interface{} `json:"embedding"`
+		Index     int           `json:"index"`
+	} `json:"data"`
+	Model string `json:"model"`
 	Usage struct {
-		PromptTokens     int `json:"prompt_tokens"`
-		CompletionTokens int `json:"completion_tokens"`
-		TotalTokens      int `json:"total_tokens"`
+		PromptTokens int `json:"prompt_tokens"`
+		TotalTokens  int `json:"total_tokens"`
 	} `json:"usage"`
 }
 

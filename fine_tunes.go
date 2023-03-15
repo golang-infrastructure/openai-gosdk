@@ -130,20 +130,18 @@ type RequestFineTunes struct{}
 type ResponseFineTunes struct {
 	Object string `json:"object"`
 	Data   []struct {
-		Id             string      `json:"id"`
-		Object         string      `json:"object"`
-		Model          string      `json:"model"`
-		CreatedAt      int         `json:"created_at"`
-		FineTunedModel interface{} `json:"fine_tuned_model"`
-		Hyperparams    struct {
-		} `json:"hyperparams"`
-		OrganizationId  string        `json:"organization_id"`
-		ResultFiles     []interface{} `json:"result_files"`
-		Status          string        `json:"status"`
-		ValidationFiles []interface{} `json:"validation_files"`
-		TrainingFiles   []struct {
-		} `json:"training_files"`
-		UpdatedAt int `json:"updated_at"`
+		Id              string                   `json:"id"`
+		Object          string                   `json:"object"`
+		Model           string                   `json:"model"`
+		CreatedAt       int                      `json:"created_at"`
+		FineTunedModel  interface{}              `json:"fine_tuned_model"`
+		Hyperparams     map[string]interface{}   `json:"hyperparams"`
+		OrganizationId  string                   `json:"organization_id"`
+		ResultFiles     []interface{}            `json:"result_files"`
+		Status          string                   `json:"status"`
+		ValidationFiles []interface{}            `json:"validation_files"`
+		TrainingFiles   []map[string]interface{} `json:"training_files"`
+		UpdatedAt       int                      `json:"updated_at"`
 	} `json:"data"`
 }
 

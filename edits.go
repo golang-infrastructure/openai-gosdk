@@ -13,7 +13,7 @@ type RequestEdits struct {
 
 	// string Required
 	// The instruction that tells the model how to edit the prompt.
-	Instruction string `json:"instruction"`
+	Instruction *string `json:"instruction"`
 
 	// integer Optional Defaults to 1
 	// How many edits to generate for the input and instruction.
