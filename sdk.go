@@ -1,15 +1,8 @@
 package openai_gosdk
 
 import (
-	"context"
 	"encoding/json"
 	"errors"
-	"net"
-	"net/http"
-	"strings"
-
-	"golang.org/x/net/proxy"
-
 	resty "github.com/go-resty/resty/v2"
 )
 
@@ -26,10 +19,7 @@ var (
 )
 
 type config struct {
-	proxy string
-	tp    string
-
-	*proxy.Auth
+	client *resty.Client
 }
 
 type BaseOpenAI struct {
@@ -58,26 +48,11 @@ func (o OpenAI[Request, Response]) DoRequest(request Request) (Response, error) 
 		return zeroResponse, err
 	}
 
-	cli := resty.
-		New()
-	if o.proxy != "" {
-		switch strings.ToLower(o.tp) {
-		case "", "http", "https":
-			cli.SetProxy(o.proxy)
-		case "socket", "socket5":
-			dialer, err := proxy.SOCKS5("tcp", o.proxy, o.Auth, proxy.Direct)
-			if err != nil {
-				return zeroResponse, err
-			}
-			cli.SetTransport(&http.Transport{DialContext: func(ctx context.Context, network, addr string) (net.Conn, error) {
-				return dialer.Dial(network, addr)
-			}})
-		default:
-			return zeroResponse, errors.New("unsupported proxy type:" + o.proxy)
-		}
+	if o.client == nil {
+		o.client = resty.New()
 	}
 
-	query := cli.
+	query := o.client.
 		R().
 		SetHeader("Authorization", "Bearer "+o.APIKey).
 		SetHeader("OpenAI-Organization", o.Organization).
@@ -128,13 +103,8 @@ func NewBaseOpenAI(apiKey, organization string, options ...Option) BaseOpenAI {
 	return base
 }
 
-func SetProxy(url string, tp string, auth *proxy.Auth) Option {
+func SetRestyClient(client *resty.Client) Option {
 	return func(c *config) {
-		if url == "" {
-			return
-		}
-		c.proxy = url
-		c.tp = tp
-		c.Auth = auth
+		c.client = client
 	}
 }
