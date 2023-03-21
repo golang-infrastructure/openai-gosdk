@@ -76,7 +76,6 @@ waitForData:
 	if !bytes.HasPrefix(line, headerData) {
 		goto waitForData
 	}
-
 	line = bytes.TrimPrefix(line, headerData)
 	if string(line) == "[DONE]" {
 		stream.isFinished.Store(true)
@@ -88,6 +87,15 @@ waitForData:
 }
 
 func (stream *Stream[Response]) Close() {
+	if stream == nil {
+		return
+	}
+	if stream.response == nil {
+		return
+	}
+	if stream.response.RawBody() != nil {
+		return
+	}
 	stream.response.RawBody().Close()
 }
 

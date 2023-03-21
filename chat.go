@@ -100,8 +100,23 @@ func NewChat(baseOpenAI BaseOpenAI) OpenAI[RequestChat, ResponseChat] {
 	}
 }
 
-func NewChatWithStream(baseOpenAI BaseOpenAI) OpenAIWithStream[RequestChat, ResponseChat] {
-	return OpenAIWithStream[RequestChat, ResponseChat]{
+type ResponseChatWithStream struct {
+	Id      string `json:"id"`
+	Object  string `json:"object"`
+	Created int    `json:"created"`
+	Model   string `json:"model"`
+	Choices []struct {
+		Delta struct {
+			Role    string `json:"role"`
+			Content string `json:"content"`
+		} `json:"delta"`
+		Index        int         `json:"index"`
+		FinishReason interface{} `json:"finish_reason"`
+	} `json:"choices"`
+}
+
+func NewChatWithStream(baseOpenAI BaseOpenAI) OpenAIWithStream[RequestChat, ResponseChatWithStream] {
+	return OpenAIWithStream[RequestChat, ResponseChatWithStream]{
 		BaseOpenAI: baseOpenAI,
 		TargetURL:  chatURL,
 		Method:     POST,
