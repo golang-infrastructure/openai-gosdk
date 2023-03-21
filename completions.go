@@ -121,3 +121,11 @@ func NewCompletions(baseOpenAI BaseOpenAI) OpenAI[RequestCompletions, ResponseCo
 		Method:     POST,
 	}
 }
+
+func NewCompletionsWithStream(baseOpenAI BaseOpenAI) OpenAIWithStream[RequestCompletions, ResponseCompletions] {
+	return OpenAIWithStream[RequestCompletions, ResponseCompletions]{
+		BaseOpenAI: baseOpenAI,
+		TargetURL:  completionsURL,
+		Method:     POST,
+	}
+}

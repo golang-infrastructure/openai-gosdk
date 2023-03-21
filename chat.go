@@ -99,3 +99,11 @@ func NewChat(baseOpenAI BaseOpenAI) OpenAI[RequestChat, ResponseChat] {
 		Method:     POST,
 	}
 }
+
+func NewChatWithStream(baseOpenAI BaseOpenAI) OpenAIWithStream[RequestChat, ResponseChat] {
+	return OpenAIWithStream[RequestChat, ResponseChat]{
+		BaseOpenAI: baseOpenAI,
+		TargetURL:  chatURL,
+		Method:     POST,
+	}
+}
