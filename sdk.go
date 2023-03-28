@@ -7,15 +7,17 @@ import (
 	"errors"
 	resty "github.com/go-resty/resty/v2"
 	"io"
+	"os"
 	"sync/atomic"
 )
 
 type Method string
 
 var (
-	GET    Method = "GET"
-	POST   Method = "POST"
-	DELETE Method = "DELETE"
+	GET            Method = "GET"
+	POST           Method = "POST"
+	DELETE       Method = "DELETE"
+	OpenaiApiKeyEnv        = "OPENAI_API_KEY"
 )
 
 var (
@@ -197,6 +199,9 @@ func (o OpenAI[Request, Response]) DoRequest(request Request) (Response, error) 
 type Option func(*config)
 
 func NewBaseOpenAI(apiKey, organization string, options ...Option) BaseOpenAI {
+	if apiKey == "" {
+		apiKey = os.Getenv(OpenaiApiKeyEnv)
+	}
 	base := BaseOpenAI{
 		APIKey:       apiKey,
 		Organization: organization,

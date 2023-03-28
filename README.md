@@ -1,5 +1,7 @@
 # [OpenAI Doc](https://platform.openai.com/docs/api-reference/introduction)
 
+Disclaimer, this is not an officially maintained repository
+
 # Quick start
 
 ```shell
@@ -33,6 +35,8 @@ func main() {
 	v, _ := json.Marshal(resp)
 	// {"id":"cha*****Vl","object":"chat.completion","created":1677828863,"choices":[{"index":0,"message":{"role":"assistant","content":"\n\nHello there, how can I assist you today?"},"finish_reason":"stop"}],"usage":{"prompt_tokens":12,"completion_tokens":12,"total_tokens":24}}
 	fmt.Println(string(v))
+	
+	// or use ENV OPENAI_API_KEY
 }
 
 ```
