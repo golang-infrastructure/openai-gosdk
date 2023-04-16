@@ -5,18 +5,19 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
-	resty "github.com/go-resty/resty/v2"
 	"io"
 	"os"
 	"sync/atomic"
+
+	resty "github.com/go-resty/resty/v2"
 )
 
 type Method string
 
 var (
-	GET            Method = "GET"
-	POST           Method = "POST"
-	DELETE       Method = "DELETE"
+	GET             Method = "GET"
+	POST            Method = "POST"
+	DELETE          Method = "DELETE"
 	OpenaiApiKeyEnv        = "OPENAI_API_KEY"
 )
 
@@ -138,7 +139,11 @@ func (o OpenAIWithStream[Request, Response]) DoRequestByStream(request Request) 
 	}
 	if response.StatusCode() != 200 {
 		var abnormalReturn AbnormalReturn = make(map[string]interface{})
-		_ = json.Unmarshal(response.Body(), &abnormalReturn)
+		abnormalReturnBytes, err := io.ReadAll(response.RawBody())
+		if err != nil {
+			return nil, err
+		}
+		_ = json.Unmarshal(abnormalReturnBytes, &abnormalReturn)
 		return nil, abnormalReturn
 	}
 	return &Stream[Response]{
