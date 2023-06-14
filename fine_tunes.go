@@ -8,11 +8,11 @@ type RequestCreateFineTune struct {
 	// string Required
 	// The ID of an uploaded file that contains training data.
 	//
-	// See upload file for how to upload a file. https://platform.openai.com/docs/api-reference/files/upload
+	// See upload file https://platform.openai.com/docs/api-reference/files/upload for how to upload a file.
 	//
 	// Your dataset must be formatted as a JSONL file, where each training example is a JSON object with the keys "prompt" and "completion". Additionally, you must upload your file with the purpose .fine-tune
 	//
-	// See the fine-tuning guide for more details. https://platform.openai.com/docs/guides/fine-tuning/creating-training-data
+	// See the fine-tuning guide https://platform.openai.com/docs/guides/fine-tuning/creating-training-data for more details.
 	TrainingFile *string `json:"training_file"`
 
 	// string Optional
@@ -22,7 +22,7 @@ type RequestCreateFineTune struct {
 	//
 	// Your dataset must be formatted as a JSONL file, where each validation example is a JSON object with the keys "prompt" and "completion". Additionally, you must upload your file with the purpose .fine-tune
 	//
-	// See the fine-tuning guide for more details. https://platform.openai.com/docs/guides/fine-tuning/creating-training-data
+	// See the fine-tuning https://platform.openai.com/docs/guides/fine-tuning/creating-training-data guide for more details.
 	ValidationFile string `json:"validation_file,omitempty"`
 
 	// string Optional Defaults to curie
@@ -34,7 +34,7 @@ type RequestCreateFineTune struct {
 	NEpochs int `json:"n_epochs,omitempty"`
 
 	// integer Optional Defaults to null
-	// TThe batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass.
+	// The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass.
 	//
 	// By default, the batch size will be dynamically configured to be ~0.2% of the number of examples in the training set, capped at 256 - in general, we've found that larger batch sizes tend to work better for larger datasets.
 	BatchSize float64 `json:"batch_size,omitempty"`
@@ -42,7 +42,7 @@ type RequestCreateFineTune struct {
 	// number Optional Defaults to null
 	// The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pretraining multiplied by this value.
 	//
-	// By default, the learning rate multiplier is the 0.05, 0.1, or 0.2 depending on final batch_size (larger learning rates tend to perform better with larger batch sizes). We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results.
+	// By default, the learning rate multiplier is the 0.05, 0.1, or 0.2 depending on final (larger learning rates tend to perform better with larger batch sizes). We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results.batch_size
 	LearningRateMultiplier float64 `json:"learning_rate_multiplier,omitempty"`
 
 	// number Optional Defaults to 0.01
@@ -52,9 +52,9 @@ type RequestCreateFineTune struct {
 	PromptLossWeight float64 `json:"prompt_loss_weight,omitempty"`
 
 	// boolean Optional Defaults to false
-	// If set, we calculate classification-specific metrics such as accuracy and F-1 score using the validation set at the end of every epoch. These metrics can be viewed in the results file.
+	// If set, we calculate classification-specific metrics such as accuracy and F-1 score using the validation set at the end of every epoch. These metrics can be viewed in the results file https://platform.openai.com/docs/guides/fine-tuning/analyzing-your-fine-tuned-model.
 	//
-	// In order to compute classification metrics, you must provide a validation_file. Additionally, you must specify classification_n_classes for multiclass classification or classification_positive_class for binary classification. https://platform.openai.com/docs/guides/fine-tuning/analyzing-your-fine-tuned-model
+	// In order to compute classification metrics, you must provide a . Additionally, you must specify for multiclass classification or for binary classification.validation_fileclassification_n_classesclassification_positive_class
 	ComputeClassificationMetrics bool `json:"compute_classification_metrics,omitempty"`
 
 	// integer Optional Defaults to null

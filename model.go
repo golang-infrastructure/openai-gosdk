@@ -22,9 +22,9 @@ For many basic tasks, the difference between GPT-4 and GPT-3.5 models is not sig
 
 var (
 	Gpt4          = ModelName{Name: "gpt-4"}
-	Gpt4_0314     = ModelName{Name: "gpt-4-0314"}
+	Gpt4_0613     = ModelName{Name: "gpt-4-0613"}
 	Gpt4_32k      = ModelName{Name: "gpt-4-32k"}
-	Gpt4_32k_0314 = ModelName{Name: "gpt-4-32k-0314"}
+	Gpt4_32k_0613 = ModelName{Name: "gpt-4-32k-0613"}
 )
 
 /*
@@ -41,11 +41,13 @@ We recommend using gpt-3.5-turbo while experimenting since it will yield the bes
 */
 
 var (
-	GPT3p5Turbo     = ModelName{Name: "gpt-3.5-turbo"}
-	GPT3p5Turbo0301 = ModelName{Name: "gpt-3.5-turbo-0301"}
-	TextDavinci003  = ModelName{Name: "text-davinci-003"}
-	TextDavinci002  = ModelName{Name: "text-davinci-002"}
-	CodeDavinci002  = ModelName{Name: "code-davinci-002"}
+	GPT3p5Turbo        = ModelName{Name: "gpt-3.5-turbo"}
+	GPT3p5Turbo16k     = ModelName{Name: "gpt-3.5-turbo-16k"}
+	GPT3p5Turbo0613    = ModelName{Name: "gpt-3.5-turbo-0613"}
+	GTP3p5Turbo16k0613 = ModelName{Name: "gpt-3.5-turbo-16k-0613"}
+	TextDavinci003     = ModelName{Name: "text-davinci-003"}
+	TextDavinci002     = ModelName{Name: "text-davinci-002"}
+	CodeDavinci002     = ModelName{Name: "code-davinci-002"}
 )
 
 /*

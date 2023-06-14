@@ -5,15 +5,6 @@ import "fmt"
 const filesURL = "https://api.openai.com/v1/files"
 
 type RequestFiles struct {
-	// Name of the JSON Lines file to be uploaded.
-	//
-	// If the is set to "fine-tune", each line is a JSON record with "prompt" and "completion" fields representing your training examples.purpose
-	File *string `json:"file"`
-
-	// The intended purpose of the uploaded documents.
-	//
-	// Use "fine-tune" for Fine-tuning. This allows us to validate the format of the uploaded file.
-	Purpose *string `json:"purpose"`
 }
 
 type ResponseFiles struct {
@@ -39,17 +30,16 @@ func NewFiles(baseOpenAI BaseOpenAI) OpenAI[RequestFiles, ResponseFiles] {
 const uploadFileURL = "https://api.openai.com/v1/files"
 
 type RequestUploadFile struct {
-	// string Required Name of the JSON Lines file to be uploaded.
+	// string Required
+	// Name of the JSON Lines https://jsonlines.readthedocs.io/en/latest/ file to be uploaded.
 	//
-	// Name of the JSON Lines file to be uploaded.
-	//
-	// If the purpose is set to "fine-tune", each line is a JSON record with "prompt" and "completion" fields representing your training examples.
+	// If the is set to "fine-tune", each line is a JSON record with "prompt" and "completion" fields representing your training examples https://jsonlines.readthedocs.io/en/latest/.purpose
 	File *string `json:"file"`
 
 	// string Required
 	// The intended purpose of the uploaded documents.
 	//
-	// Use "fine-tune" for Fine-tuning. This allows us to validate the format of the uploaded file.
+	// Use "fine-tune" for Fine-tuning https://platform.openai.com/docs/api-reference/fine-tunes. This allows us to validate the format of the uploaded file.
 	Purpose *string `json:"purpose"`
 }
 

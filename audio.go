@@ -4,15 +4,15 @@ const createTranscriptionURL = "https://api.openai.com/v1/audio/transcriptions"
 
 type RequestTranscription struct {
 	// string Required
-	// The audio file to translate, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm.
+	// The audio file object (not file name) to transcribe, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm.
 	File *string `json:"file"`
 
 	// string Required
-	// ID of the model to use. Only whisper-1 is currently available.
+	// ID of the model to use. Only is currently available.whisper-1
 	Model *string `json:"model"`
 
 	// string Optional
-	// An optional text to guide the model's style or continue a previous audio segment. The prompt should match the audio language.. https://platform.openai.com/docs/guides/speech-to-text/prompting
+	// An optional text to guide the model's style or continue a previous audio segment. The prompt should match the audio language.
 	Prompt string `json:"prompt,omitempty"`
 
 	// string Optional Defaults to json
@@ -20,11 +20,11 @@ type RequestTranscription struct {
 	ResponseFormat string `json:"response_format,omitempty"`
 
 	// number Optional Defaults to 0
-	// The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use log probability to automatically increase the temperature until certain thresholds are hit.
+	// The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use log probability https://en.wikipedia.org/wiki/Log_probability to automatically increase the temperature until certain thresholds are hit.
 	Temperature float64 `json:"temperature,omitempty"`
 
 	// string Optional
-	// The language of the input audio. Supplying the input language in ISO-639-1 format will improve accuracy and latency.
+	// The language of the input audio. Supplying the input language in ISO-639-1 https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes format will improve accuracy and latency.
 	Language string `json:"language,omitempty"`
 }
 
@@ -44,7 +44,7 @@ const createTranslationURL = "https://api.openai.com/v1/audio/translations"
 
 type RequestTranslation struct {
 	// string Required
-	// The audio file to translate, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm.
+	// The audio file object (not file name) translate, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm.
 	File *string `json:"file"`
 
 	// string Required
@@ -60,7 +60,7 @@ type RequestTranslation struct {
 	ResponseFormat string `json:"response_format,omitempty"`
 
 	// number Optional Defaults to 0
-	// The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use log probability to automatically increase the temperature until certain thresholds are hit.
+	// The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use log probability https://en.wikipedia.org/wiki/Log_probability to automatically increase the temperature until certain thresholds are hit.
 	Temperature float64 `json:"temperature,omitempty"`
 }
 
