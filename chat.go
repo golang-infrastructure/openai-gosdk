@@ -120,8 +120,9 @@ type ResponseChat struct {
 	Choices []struct {
 		Index   int `json:"index"`
 		Message struct {
-			Role    string `json:"role"`
-			Content string `json:"content"`
+			Role         string      `json:"role"`
+			Content      string      `json:"content"`
+			FunctionCall interface{} `json:"function_call,omitempty"`
 		} `json:"message"`
 		FinishReason string `json:"finish_reason"`
 	} `json:"choices"`
